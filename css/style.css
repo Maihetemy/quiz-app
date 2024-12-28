@@ -1,0 +1,58 @@
+.quiz {
+    height: 100vh;
+    background-image: url(../images/wavey-fingerprint.svg);
+}
+
+.title {
+    width: fit-content;
+    border-radius: 15px;
+    position: relative;
+    padding: 1rem;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    height: 120%;
+    width: 120%;
+    border-radius: inherit;
+    background-image: conic-gradient(#A100FFFF, #119CFDFF);
+    top: -10%;
+    left: -10%;
+    z-index: -1;
+    animation: spinner 7s linear infinite;
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(90deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    75% {
+        transform: rotate(270deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.title p {
+    border-radius: inherit;
+    font-size: 3rem;
+    color: rgb(33, 37, 41);
+    padding: 1rem;
+    background-color: white;
+    margin: 0;
+    font-weight: 500;
+}
