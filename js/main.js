@@ -9,25 +9,28 @@ let questionsList = [];
 let quiz = {};
 
 startQuizBtn.addEventListener('click', async () => {
-    const values = {
-        category: categorySelect.value,
-        difficulty: difficultySelect.value,
-        number: questionsNumber.value,
+    if (validation(questionsNumber.value)) {
+        const values = {
+            category: categorySelect.value,
+            difficulty: difficultySelect.value,
+            number: questionsNumber.value,
+        }
+
+        quiz = new Quiz(values);
+
+        questionsList = await quiz.getQuiz();
+        quiz.hideStartQuizForm();
+        let question = new Question(0);
+        question.displayQuestion();
+        console.log(question.randomization());
+        console.log(questionsList);
+        console.log(question);
+    }
+    else {
+        questionsNumber.nextElementSibling.classList.replace('d-none', 'd-block');
     }
 
-    quiz = new Quiz(values);
-
-    questionsList = await quiz.getQuiz();
-    quiz.hideStartQuizForm();
-    let question = new Question(0);
-    question.displayQuestion();
-    console.log(question.randomization());
-    console.log(questionsList);
-    console.log(question);
-
 });
-
-
 
 class Quiz {
     constructor({ category, difficulty, number }) {
@@ -56,8 +59,6 @@ class Quiz {
         startQuizForm.classList.replace('d-flex', 'd-none');
     }
 
-
-
     finishQuiz = () => {
         rowData.innerHTML = `
         <div class="question shadow-lg col-lg-12  p-4 rounded-3 d-flex flex-column justify-content-center align-items-center gap-3">
@@ -70,7 +71,7 @@ class Quiz {
             </h2>
             <button class="again btn btn-primary rounded-pill" id="tryAgainBtn"><i class="bi bi-arrow-repeat"></i> Try Again</button>
         </div>`;
-        document.querySelector("#tryAgainBtn").addEventListener('click', ()=>{
+        document.querySelector("#tryAgainBtn").addEventListener('click', () => {
             window.location.reload();
         })
     }
@@ -151,3 +152,8 @@ class Question {
     }
 }
 
+validation = (value) => {
+    const regex = /^(?:[1-9]|[1-4][0-9]|50)$/;
+    if (regex.test(value)) return true;
+    else return false;
+}
