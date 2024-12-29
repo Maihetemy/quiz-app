@@ -7,7 +7,7 @@
 
     <!-- ----------app title---------------------- -->
     <title>Quiz</title>
-    <link rel="icon" href="">
+    <link rel="icon" href="./images/quiz.png">
 
     <!-- font-awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
@@ -15,6 +15,9 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
 
     <!-- ----------css files---------------------- -->
     <!-- bootstrap -->
@@ -27,27 +30,29 @@
 
 <body>
     <div class="quiz min-vh-100 d-flex align-items-center justify-content-center flex-column">
-        <div class="title p-2 text-center  mb-5 animate__animated animate__backInDown">
+        <div class="title p-2 text-center  mb-5 animate__animated animate__backInDown flex-row">
             <p> Quiz App </p>
         </div>
         <div class="container animate__animated animate__bounceInLeft">
             <div class="row">
-                <form class="start-quiz gap-2 col-lg-8 offset-lg-2 d-flex flex-column">
+                <form class="start-quiz gap-2 col-lg-8 offset-lg-2 d-flex flex-column" id="startQuizForm">
                     <div class="form-floating">
-                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                            <option selected>Any Category</option>
-                            <option value="1">Any Category</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="form-select" id="categorySelect" aria-label="Floating label select example">
+                            <option selected value="9">General Knowledge</option>
+                            <option value="20">Mythology</option>
+                            <option value="21">Sports</option>
+                            <option value="22">Geography</option>
+                            <option value="23">History</option>
+                            <option value="24">Politics</option>
+                            <option value="25">Art</option>
                         </select>
                         <label for="floatingSelect">Choose Category</label>
                     </div>
                     <div class="form-floating">
-                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                            <option selected>Easy</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="form-select" id="difficultySelect" aria-label="Floating label select example">
+                            <option selected value="easy">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
                         </select>
                         <label for="floatingSelect">Choose Difficulty Level</label>
                     </div>
@@ -56,13 +61,18 @@
                             placeholder="Number of Questions" />
                         <label for="QuestionsNumber">Number of Questions</label>
                     </div>
-                    <button type="button" class="btn btn-start btn-primary p-2" id="startQuiz">
+                    <button type="button" class="btn btn-start btn-primary p-2" id="startQuizBtn">
                         Start
                     </button>
                 </form>
             </div>
+        </div>
+        <div class="questions">
+            <div class="container">
+                <div class="row" id="rowData">
 
-
+                </div>
+            </div>
         </div>
     </div>
     <script src="js/bootstrap.bundle.min.js"></script>
